@@ -12,7 +12,6 @@ public class JSONLogout {
         try {
             //noti_count
             count = response.getInt("noti_count");
-
         }
         catch (JSONException e) {
             e.printStackTrace();

@@ -29,6 +29,7 @@ public class AllCourses extends AppCompatActivity {
     TextView textview;
     TextView Logout;
     ArrayList<String> codeNames = new ArrayList<>();
+    //pass the course code of the course selected into the intent!
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +60,7 @@ public class AllCourses extends AppCompatActivity {
                         courses.call(response);
                         Vector<JSONCourse> tempList = courses.list;
                         JSONCourse tempCourse;
-
                         String codeName;
-
                         for (int i=0; i<tempList.size(); i++)
                         {
                             tempCourse = tempList.get(i);
@@ -85,9 +84,27 @@ public class AllCourses extends AppCompatActivity {
         startActivity(intent);
     }
     public void logout(){
-        Intent intent = new Intent(AllCourses.this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        String URL = "http://10.192.58.152:8000/logout.json";
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //   Toast.makeText(AllCourses.this, response.toString(), Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(AllCourses.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(AllCourses.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsObjRequest);
     }
+    @Override
+    public void onBackPressed(){};
 }
 

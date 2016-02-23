@@ -28,8 +28,12 @@
 
         <activity
             android:name=".AllCourses"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".AllGrades"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".AllGrades" />
+        <activity android:name=".Notifications" />
+        <activity android:name=".ThreadNotification" />
+        <activity android:name=".Course" />
+        <activity android:name=".Assignment"></activity>
     </application>
 
 </manifest>

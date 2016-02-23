@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             login();
         }
     }
-
     @Override
     public void onStart() {
         super.onStart();

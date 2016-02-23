@@ -12,7 +12,7 @@ import java.util.Vector;
  */
 public class JSONCoursesList {
     int currentSem;
-    Vector<JSONCourse> list = new Vector<JSONCourse>();
+    Vector<JSONCourse> list = new Vector<>();
     JSONUser name = new JSONUser();
     int currentYr;
     public void call(JSONObject response) {

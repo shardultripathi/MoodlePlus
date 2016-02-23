@@ -10,22 +10,20 @@ import java.util.Vector;
  * Created by Aditi Singla on 22-Feb-16.
  */
 public class JSONNotifications {
-    Vector<JSONThread> threadList = new Vector<JSONThread>();
+    Vector<JSONSingleNotification> notList = new Vector<>();
     public void call(JSONObject response) {
         try {
             //notifications
-            JSONArray threadArray = response.getJSONArray("course_threads");
-            for (int i = 0; i < threadArray.length(); i++) {
-                JSONThread thr = new JSONThread();
-                JSONObject obj = threadArray.getJSONObject(i);
-                thr.userId = obj.getInt("user_id");
-                thr.description = obj.getString("description");
-                thr.title = obj.getString("title");
-                thr.createdAt = obj.getString("created_at");
-                thr.regCourseId = obj.getInt("registered_course_id");
-                thr.updatedAt = obj.getString("updated_at");
-                thr.id = obj.getInt("id");
-                threadList.add(thr);
+            JSONArray notArray = response.getJSONArray("notifications");
+            for (int i = 0; i < notArray.length(); i++) {
+                JSONSingleNotification not = new JSONSingleNotification();
+                JSONObject obj = notArray.getJSONObject(i);
+                not.userId = obj.getInt("user_id");
+                not.description = obj.getString("description");
+                not.createdAt = obj.getString("created_at");
+                not.is_seen = obj.getInt("is_seen");
+                not.id = obj.getInt("id");
+                notList.add(not);
             }
         } catch (JSONException e) {
             e.printStackTrace();

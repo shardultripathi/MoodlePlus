@@ -25,6 +25,12 @@ import java.util.Vector;
 
 public class AllGrades extends AppCompatActivity {
     private JSONGrades getGrades = new JSONGrades();
+    Vector<JSONGrade> gradeList = new Vector<>();
+    Vector<JSONCourse> courseList = new Vector<>();
+    // JSONCourse: String code, name, description, ltp;
+    //              int credits, id;
+    // JSONGrade: int weightage, userId, outOf, regCourseId, score, id;
+    //              String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +41,8 @@ public class AllGrades extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         getGrades.call(response);
-                        Vector<JSONGrade> gradeList = getGrades.gradel;
-                        Vector<JSONCourse> courseList = getGrades.coursel;
+                        gradeList = getGrades.gradel;
+                        courseList = getGrades.coursel;
                         String s ="";
                         for (int i = 0; i < courseList.size(); i++) {
                             s += i + ". " + courseList.get(i).code + " : " + courseList.get(i).name + ": \n";
