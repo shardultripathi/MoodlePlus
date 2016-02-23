@@ -9,12 +9,12 @@ import java.util.Vector;
 /**
  * Created by Aditi Singla on 22-Feb-16.
  */
-public class SpecificCourse {
-    Vector<Assignment> assnList;
-    Registered reg;
-    Vector<Thread> threadList;
-    Course course;
-    Vector<Grade> gradeList;
+public class JSONSpecificCourse {
+    Vector<JSONAssignment> assnList = new Vector<JSONAssignment>();
+    JSONRegistered reg = new JSONRegistered();
+    Vector<JSONThread> threadList= new Vector<JSONThread>();
+    JSONCourse course = new JSONCourse();
+    Vector<JSONGrade> gradeList = new Vector<JSONGrade>();
     String tab;
     int year;
     int sem;
@@ -23,7 +23,7 @@ public class SpecificCourse {
             //assignments
             JSONArray assnArray = response.getJSONArray("assignments");
             for (int i = 0; i < assnArray.length(); i++) {
-                Assignment assn = new Assignment();
+                JSONAssignment assn = new JSONAssignment();
                 JSONObject obj = assnArray.getJSONObject(i);
                 assn.name = obj.getString("name");
                 assn.file = obj.getString("file_");
@@ -36,7 +36,10 @@ public class SpecificCourse {
                 assn.description = obj.getString("description");
                 assnList.add(assn);
             }
-
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
             //registered
             JSONObject register = response.getJSONObject("registered");
             reg.startDate = register.getString("starting_date");
@@ -46,11 +49,14 @@ public class SpecificCourse {
             reg.endDate = register.getString("ending_date");
             reg.year = register.getInt("year_");
             reg.courseId = register.getInt("course_id");
-
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+        }
+        try{
             //course_threads
             JSONArray threadArray = response.getJSONArray("course_threads");
             for (int i = 0; i < threadArray.length(); i++) {
-                Thread thr = new Thread();
+                JSONThread thr = new JSONThread();
                 JSONObject obj = threadArray.getJSONObject(i);
                 thr.userId = obj.getInt("user_id");
                 thr.description = obj.getString("description");
@@ -61,7 +67,10 @@ public class SpecificCourse {
                 thr.id = obj.getInt("id");
                 threadList.add(thr);
             }
-
+        } catch (JSONException et) {
+            et.printStackTrace();
+        }
+        try{
             //course
             JSONObject obj = response.getJSONObject("course");
             course.code = obj.getString("code");
@@ -70,19 +79,22 @@ public class SpecificCourse {
             course.credits = obj.getInt("credits");
             course.id = obj.getInt("id");
             course.ltp = obj.getString("l_t_p");
-
+        } catch (JSONException en) {
+            en.printStackTrace();
+        }
+        try{
             //grades
             JSONArray gradeArray = response.getJSONArray("grades");
             for (int i = 0; i < gradeArray.length(); i++) {
-                Grade g = new Grade();
+                JSONGrade g = new JSONGrade();
                 JSONObject object = gradeArray.getJSONObject(i);
                 g.weightage = object.getInt("weightage");
                 g.userId = object.getInt("user_id");
                 g.name = object.getString("name");
                 g.outOf = object.getInt("out_of");
                 g.regCourseId = object.getInt("registered_course_id");
-                g.score = obj.getInt("score");
-                g.id = obj.getInt("id");
+                g.score = object.getInt("score");
+                g.id = object.getInt("id");
                 gradeList.add(g);
             }
 
@@ -91,8 +103,8 @@ public class SpecificCourse {
             year = response.getInt("year");
 
             sem = response.getInt("sem");
-        } catch (JSONException e) {
-            e.printStackTrace();
+        } catch (JSONException em) {
+            em.printStackTrace();
         }
     }
 }

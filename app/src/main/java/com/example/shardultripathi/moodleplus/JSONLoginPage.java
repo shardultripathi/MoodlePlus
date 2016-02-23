@@ -4,8 +4,8 @@ import org.json.JSONObject;
 /**
  * Created by Aditi Singla on 22-Feb-16.
  */
-public class LoginPage {
-    User name;
+public class JSONLoginPage {
+    JSONUser name = new JSONUser();
     Boolean success;
     public void call(JSONObject response) {
         try {

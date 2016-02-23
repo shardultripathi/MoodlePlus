@@ -6,7 +6,7 @@ import org.json.JSONObject;
 /**
  * Created by Aditi Singla on 22-Feb-16.
  */
-public class Logout {
+public class JSONLogout {
     int count;
     public void call(JSONObject response) {
         try {

@@ -9,15 +9,15 @@ import java.util.Vector;
 /**
  * Created by Aditi Singla on 22-Feb-16.
  */
-public class Grades {
-    Vector<Course> coursel;
-    Vector<Grade>  gradel;
+public class JSONGrades {
+    Vector<JSONCourse> coursel = new Vector<JSONCourse>();
+    Vector<JSONGrade>  gradel = new Vector<JSONGrade>();
     public void call(JSONObject response) {
         try {
             //courses
             JSONArray courseArray = response.getJSONArray("courses");
             for (int i = 0; i < courseArray.length(); i++) {
-                Course c = new Course();
+                JSONCourse c = new JSONCourse();
                 JSONObject obj = courseArray.getJSONObject(i);
                 c.code = obj.getString("code");
                 c.name = obj.getString("name");
@@ -27,11 +27,15 @@ public class Grades {
                 c.ltp = obj.getString("l_t_p");
                 coursel.add(c);
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        try {
             //grades
             JSONArray gradeArray = response.getJSONArray("grades");
             for (int i = 0; i < gradeArray.length(); i++) {
-                Grade g = new Grade();
+                JSONGrade g = new JSONGrade();
                 JSONObject obj = gradeArray.getJSONObject(i);
                 g.weightage = obj.getInt("weightage");
                 g.userId = obj.getInt("user_id");
@@ -42,8 +46,8 @@ public class Grades {
                 g.id = obj.getInt("id");
                 gradel.add(g);
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        } catch (JSONException ex) {
+            ex.printStackTrace();
         }
     }
 }

@@ -74,17 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         try {
                             if (response.getBoolean("success") == true) {
                                 Intent intent = new Intent(MainActivity.this, AllCourses.class);
-//                        intent.putExtra("response", response);
-//
-//                        intent.putExtra("teamname",ETteamname.getText().toString());
-//                        intent.putExtra("entry1",ETentry1.getText().toString());
-//                        intent.putExtra("name1",ETname1.getText().toString());
-//                        intent.putExtra("entry2",ETentry2.getText().toString());
-//                        intent.putExtra("name2", ETname2.getText().toString());
-//                        intent.putExtra("entry3",ETentry3.getText().toString());
-//                        intent.putExtra("name3",ETname3.getText().toString());
-//
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                             } else
                                 Toast.makeText(MainActivity.this, "Invalid login", Toast.LENGTH_LONG).show();

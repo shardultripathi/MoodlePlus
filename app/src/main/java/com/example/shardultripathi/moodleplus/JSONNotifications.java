@@ -9,14 +9,14 @@ import java.util.Vector;
 /**
  * Created by Aditi Singla on 22-Feb-16.
  */
-public class Notifications {
-    Vector<Thread> threadList;
+public class JSONNotifications {
+    Vector<JSONThread> threadList = new Vector<JSONThread>();
     public void call(JSONObject response) {
         try {
             //notifications
             JSONArray threadArray = response.getJSONArray("course_threads");
             for (int i = 0; i < threadArray.length(); i++) {
-                Thread thr = new Thread();
+                JSONThread thr = new JSONThread();
                 JSONObject obj = threadArray.getJSONObject(i);
                 thr.userId = obj.getInt("user_id");
                 thr.description = obj.getString("description");

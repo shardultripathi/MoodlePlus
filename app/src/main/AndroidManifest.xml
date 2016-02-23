@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.example.shardultripathi.moodleplus">
-<uses-permission android:name="android.permission.INTERNET" />
+    package="com.example.shardultripathi.moodleplus">
 
-<application
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:supportsRtl="true"
-    android:name=".AppCookie"
-    android:theme="@style/AppTheme">
-    <activity android:name=".MainActivity" android:screenOrientation="portrait"> <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter>
-    </activity>
+    <application
+        android:name=".AppCookie"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-    <activity
-        android:name="AllCourses"
-        android:screenOrientation="portrait">
+        <!--
+         ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
 
-    </activity>
-</application>
+        <activity
+            android:name=".AllCourses"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".AllGrades"></activity>
+    </application>
+
 </manifest>

@@ -10,10 +10,10 @@ import java.util.Vector;
 /**
  * Created by Aditi Singla on 22-Feb-16.
  */
-public class CoursesList {
+public class JSONCoursesList {
     int currentSem;
-    Vector<Course> list;
-    User name;
+    Vector<JSONCourse> list = new Vector<JSONCourse>();
+    JSONUser name = new JSONUser();
     int currentYr;
     public void call(JSONObject response) {
         try {
@@ -23,7 +23,7 @@ public class CoursesList {
             //courses
             JSONArray courseArray = response.getJSONArray("courses");
             for (int i = 0; i < courseArray.length(); i++) {
-                Course c = new Course();
+                JSONCourse c = new JSONCourse();
                 JSONObject obj = courseArray.getJSONObject(i);
                 c.code = obj.getString("code");
                 c.name = obj.getString("name");
@@ -33,8 +33,11 @@ public class CoursesList {
                 c.ltp = obj.getString("l_t_p");
                 list.add(c);
             }
-
-            //user
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try{
+        //user
             JSONObject user = response.getJSONObject("user");
             name.lastName = user.getString("last_name");
             name.resetPasswordKey = user.getString("reset_password_key");
@@ -50,8 +53,8 @@ public class CoursesList {
 
             //current_year
             currentYr = user.getInt("current_year");
-        } catch (JSONException e) {
-            e.printStackTrace();
+        } catch (JSONException ex) {
+            ex.printStackTrace();
         }
     }
 }
